@@ -16,7 +16,14 @@ module('Acceptance | list posts', function(hooks) {
     assert.equal(currentURL(), '/posts', 'should navigate to posts')
   })
 
-  test('should list all posts.', async function(assert) {})
+  test('should list all posts.', async function(assert) {
+    await visit('/posts')
+    assert.equal(
+      this.element.querySelectorAll('.listing').length,
+      100,
+      'should display 100 listings'
+    )
+  })
 
   test('should show details for a selected post.', async function(assert) {})
 })

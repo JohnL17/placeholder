@@ -1,0 +1,22 @@
+<h3>Show post</h3>
+
+<div class="jumbo">
+  <h2 class="title">{{model.title}}</h2>
+  <div class="right detail-section">
+    <div class="detail body">
+      <strong>Post:</strong> {{model.body}}
+    </div>
+  </div>
+</div>
+
+{{#each model.comments as |comment|}}
+<article class="listing">
+<h3>{{comment.name}}</h3>
+<div class="detail body">
+  <span>Body:</span> {{comment.body}}
+</div>
+<div class="detail email">
+  <span>Email:</span> {{comment.email}}
+</div>
+</article>
+{{/each}}
