@@ -19,7 +19,7 @@ module('Acceptance | list posts', function(hooks) {
   test('should list all posts.', async function(assert) {
     await visit('/posts')
     assert.equal(
-      this.element.querySelectorAll('.listing').length,
+      this.element.querySelectorAll('.uk-card').length,
       100,
       'should display 100 listings'
     )

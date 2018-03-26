@@ -2,10 +2,12 @@
 
 {{#each model as |post|}}
   {{#link-to "posts.show" post class="post.id uk-link-reset"}}
-    <div class="listing uk-card uk-card-body uk-card-hover">
-      <h3>{{post.title}}</h3>
-      <p>{{post.body}}</p>
-    </div>
+    {{#uk-card color='default' hover=true class="uk-margin-bottom" as |card|}}
+      {{#card.header}}
+        {{#card.title}}{{post.title}}{{/card.title}}
+      {{/card.header}}
+      {{#card.body}}{{post.body}}{{/card.body}}
+    {{/uk-card}}
   {{/link-to}}
 {{/each}}
 
