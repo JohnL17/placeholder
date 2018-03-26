@@ -1,11 +1,13 @@
 <h3>All posts</h3>
 
 {{#each model as |post|}}
-  <article class="listing">
-    <h3>{{#link-to "posts.show" post class=post.id}}{{post.title}}{{/link-to}}</h3>
-    <div class="detail body">
-      <span>Post:</span> {{post.body}}
-    </div>
-  </article>
+  {{#link-to 'posts.show' post.id class='uk-link-reset'}}
+    {{#uk-card color='default' hover=true class='uk-margin-bottom' as |card|}}
+      {{#card.header}}
+        {{#card.title}}{{post.title}}{{/card.title}}
+      {{/card.header}}
+      {{#card.body}}{{post.body}}{{/card.body}}
+    {{/uk-card}}
+  {{/link-to}}
 {{/each}}
 
