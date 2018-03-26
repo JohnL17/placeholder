@@ -1,0 +1,11 @@
+<h3>All albums</h3>
+
+{{#each model as |album|}}
+  {{#link-to 'gallery.show' album.id class='uk-link-reset'}}
+    {{#uk-card color='default' hover=true class='uk-margin-bottom' as |card|}}
+      {{#card.header}}
+        {{#card.title}}{{album.title}}{{/card.title}}
+      {{/card.header}}
+    {{/uk-card}}
+  {{/link-to}}
+{{/each}}
