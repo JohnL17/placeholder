@@ -1,0 +1,13 @@
+<h3>Show photos</h3>
+
+<h4>{{model.title}}</h4>
+
+<div uk-grid uk-lightbox="animation: slide">
+  {{#each model.photos as |photo|}}
+    <div class="uk-margin-left uk-margin-right">
+        <a class="uk-inline" data-type="image" href={{photo.url}} caption={{photo.title}}>
+            <img src={{photo.thumbnailUrl}} alt={{photo.title}}>
+        </a>
+    </div>
+  {{/each}}
+</div>

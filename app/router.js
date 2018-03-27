@@ -11,6 +11,9 @@ Router.map(function() {
     this.route('show', { path: ':id' })
   })
   this.route('about')
+  this.route('gallery', function() {
+    this.route('show', { path: ':id' })
+  })
 })
 
 export default Router
