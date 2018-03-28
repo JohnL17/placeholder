@@ -1,0 +1,14 @@
+{{#link-to 'gallery.show' album.id class='uk-link-reset'}}
+  {{#uk-card color='default' hover=true class='uk-margin-bottom uk-width-1-2 uk-align-center' as |card|}}
+    {{#card.header}}
+      {{#card.title class="uk-text-center"}}{{album.title}}{{/card.title}}
+    {{/card.header}}
+    {{#card.body}}
+    <div class="uk-flex uk-flex-wrap uk-flex-center">
+      {{#each preview as |photo|}}
+        <img src={{photo.thumbnailUrl}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom">
+      {{/each}}
+    </div>
+    {{/card.body}}
+  {{/uk-card}}
+{{/link-to}}
