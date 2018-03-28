@@ -9,7 +9,7 @@ export default Component.extend({
       albumId: this.get('album.id')
     })
   }),
-  preview: computed.filter('allPhotos', function(photo, index) {
-    return index < 4
+  preview: computed('allPhotos.[]', function() {
+    return this.get('allPhotos').slice(0, 4)
   })
 })

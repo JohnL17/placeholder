@@ -5,6 +5,9 @@
     {{/card.header}}
     {{#card.body}}
     <div class="uk-flex uk-flex-wrap uk-flex-center">
+      {{#if allPhotos.isPending}}
+        {{uk-spinner}}
+      {{/if}}
       {{#each preview as |photo|}}
         <img src={{photo.thumbnailUrl}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom">
       {{/each}}
