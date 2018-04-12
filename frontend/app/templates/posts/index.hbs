@@ -1,0 +1,21 @@
+<h1>All posts</h1>
+
+<h3>Create a post</h3>
+<div>
+  {{input value=newTitle placeholder="Title"}}
+  {{input value=newBody placeholder="Body"}}
+  <button {{action 'createPost'}}>Create</button>
+</div>
+
+<div class="uk-container-expand">
+{{#each model as |post|}}
+  {{#link-to 'posts.show' post.id class='uk-link-reset'}}
+    {{#uk-card color='default' hover=true class='uk-margin-bottom' as |card|}}
+      {{#card.header}}
+        {{#card.title}}{{post.title}}{{/card.title}}
+      {{/card.header}}
+      {{#card.body}}{{post.body}}{{/card.body}}
+    {{/uk-card}}
+  {{/link-to}}
+{{/each}}
+</div>
