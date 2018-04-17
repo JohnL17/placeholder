@@ -1,13 +1,26 @@
 <h3>Show photos</h3>
 
-<h4>{{model.title}}</h4>
+<div class="uk-card uk-card-default">
+    <div class="uk-card-body">
+    <h3 class="uk-card-title">{{model.title}}</h3>
+    {{#link-to "gallery.edit" model.id class="uk-button uk-button-primary"}}
+        Edit gallery
+    {{/link-to}}
 
-<div uk-grid uk-lightbox="animation: slide">
-  {{#each model.photos as |photo|}}
-    <div class="uk-margin-left uk-margin-right">
-        <a class="uk-inline" data-type="image" href={{photo.url}} caption={{photo.title}}>
-            <img src={{photo.thumbnailUrl}} alt={{photo.title}}>
-        </a>
+    {{#link-to "gallery.upload" model.id class="uk-button uk-button-primary"}}
+        Upload pictures
+    {{/link-to}}
+    <button class="uk-button uk-button-danger" {{action 'destroyGallery'}}>Delete gallery</button>
     </div>
-  {{/each}}
+    <div class="uk-card-media-bottom uk-padding">
+        <div uk-grid uk-lightbox="animation: slide">
+          {{#each model.photos as |photo|}}
+            <div class="uk-margin-left uk-margin-right">
+                <a class="uk-inline" data-type="image" href={{photo.url}} caption={{photo.title}}>
+                    <img src={{photo.url}} alt={{photo.title}}>
+                </a>
+            </div>
+          {{/each}}
+        </div>
+    </div>
 </div>

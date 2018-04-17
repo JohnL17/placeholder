@@ -42,5 +42,5 @@ class AlbumAdmin(ModelAdmin):
 class PhotoAdmin(ModelAdmin):
     """Photo admin view."""
 
-    list_display = ['title', 'url']
-    search_fields = ['title', 'url']
+    list_display = ['title', 'url', 'album']
+    search_fields = ['title', 'url', 'album']

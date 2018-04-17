@@ -3,8 +3,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# from django.db import models
-
 
 class User(AbstractUser):
     """User model.
@@ -23,7 +21,6 @@ class Post(models.Model):
 
     title   = models.CharField(max_length=255)
     body    = models.TextField(blank=True)
-    user    = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
         """Represent the model as a string.
@@ -61,7 +58,6 @@ class Album(models.Model):
     """
 
     title   = models.CharField(max_length=255)
-    user    = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
         """Represent the model as a string.
@@ -78,10 +74,10 @@ class Photo(models.Model):
     Every user can add photos to his albums.
     """
 
-    title           = models.CharField(max_length=255)
-    url             = models.CharField(max_length=255)
-    thumbnail_url   = models.CharField(max_length=255)
-    album           = models.ForeignKey('Album', on_delete=models.CASCADE)
+    title           = models.CharField(max_length=255, null=True)
+    url             = models.CharField(max_length=255, null=False)
+    album           = models.ForeignKey('Album', related_name='photos',
+                                        on_delete=models.CASCADE)
 
     def __str__(self):
         """Represent the model as a string.

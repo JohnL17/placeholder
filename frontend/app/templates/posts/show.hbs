@@ -2,11 +2,15 @@
 
 <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
   <div class="uk-card-media-left uk-cover-container">
-    <img src="https://picsum.photos/400/290?image={{model.id}}" alt="post picture" uk-cover>
+    <img src="https://picsum.photos/400/290?image={{model.post.id}}" alt="post picture" uk-cover>
   </div>
   <div class="uk-card-body">
-    <h3 class="uk-card-title">{{model.title}}</h3>
-      <p>{{model.body}}</p>
+    <h3 class="uk-card-title">{{model.post.title}}</h3>
+    <p>{{model.post.body}}</p>
+    {{#link-to "posts.edit" model.post.id class="uk-button uk-button-primary"}}
+      Edit post
+    {{/link-to}}
+    <button class="uk-button uk-button-danger" {{action 'destroyPost'}}>Delete post</button>
   </div>
 </div>
 

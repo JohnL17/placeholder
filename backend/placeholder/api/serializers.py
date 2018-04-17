@@ -29,7 +29,6 @@ class PostSerializer(ModelSerializer):
         fields = [
             'title',
             'body',
-            'user',
         ]
 
 
@@ -51,13 +50,17 @@ class CommentSerializer(ModelSerializer):
 class AlbumSerializer(ModelSerializer):
     """Album serializer."""
 
+    included_serializers = {
+        'photos': 'placeholder.api.serializers.PhotoSerializer'
+    }
+
     class Meta:
         """Meta information for the album serializer."""
 
         model = models.Album
         fields = [
             'title',
-            'user',
+            'photos'
         ]
 
 
@@ -71,6 +74,5 @@ class PhotoSerializer(ModelSerializer):
         fields = [
             'title',
             'url',
-            'thumbnail_url',
             'album',
         ]
