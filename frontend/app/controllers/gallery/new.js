@@ -4,10 +4,8 @@ export default Controller.extend({
   actions: {
     createGallery() {
       let newTitle = this.get("newTitle")
-      let newPhoto = this.get("newPhoto")
       let newRecord = this.store.createRecord("album", {
-        title: newTitle,
-        photo: newPhoto
+        title: newTitle
       })
       newRecord.save().then(() => {
         this.transitionToRoute("gallery.index")

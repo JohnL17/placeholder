@@ -60,7 +60,6 @@ class AlbumSerializer(ModelSerializer):
         model = models.Album
         fields = [
             'title',
-            'photos'
         ]
 
 
