@@ -1,19 +1,17 @@
-import Controller from "@ember/controller"
+import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
     createPost() {
-      let newTitle = this.get("newTitle")
-      let newBody = this.get("newBody")
-      let newRecord = this.store.createRecord("post", {
-        title: newTitle,
-        body: newBody
-      })
-      newRecord.save().then(() => {
-        this.transitionToRoute("posts.index")
-      })
-      this.set("newTitle", "")
-      this.set("newBody", "")
-    }
-  }
-})
+      this.store
+        .createRecord('post', {
+          title: this.get('newTitle'),
+          body: this.get('newBody'),
+        })
+        .save()
+        .then(() => {
+          this.transitionToRoute('posts.index');
+        });
+    },
+  },
+});

@@ -1,19 +1,21 @@
-import Controller from "@ember/controller"
+import Controller from '@ember/controller';
 
 export default Controller.extend({
   init() {
-    this._super(...arguments)
+    this._super(...arguments);
   },
   actions: {
     editPost() {
-      let editedTitle = this.get("model.title")
-      let editedBody = this.get("model.body")
-      let post = this.get("model")
-      post.set("title", editedTitle)
-      post.set("body", editedBody)
+      let post = this.get('model');
+      post.set(
+        'title',
+        this.get('model.title'),
+        'body',
+        this.get('model.body'),
+      );
       post.save().then(() => {
-        this.transitionToRoute("posts.index")
-      })
-    }
-  }
-})
+        this.transitionToRoute('posts.index');
+      });
+    },
+  },
+});

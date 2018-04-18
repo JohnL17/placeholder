@@ -74,8 +74,8 @@ class Photo(models.Model):
     Every user can add photos to his albums.
     """
 
-    title           = models.CharField(max_length=255, null=True)
-    url             = models.CharField(max_length=255, null=False)
+    title           = models.CharField(max_length=255, blank=True)
+    url             = models.CharField(max_length=255)
     album           = models.ForeignKey('Album', related_name='photos',
                                         on_delete=models.CASCADE)
 
