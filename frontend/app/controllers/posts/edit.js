@@ -7,12 +7,10 @@ export default Controller.extend({
   actions: {
     editPost() {
       let post = this.get('model');
-      post.set(
-        'title',
-        this.get('model.title'),
-        'body',
-        this.get('model.body'),
-      );
+      post.setProperties({
+        title: this.get('model.title'),
+        body: this.get('model.body'),
+      });
       post.save().then(() => {
         this.transitionToRoute('posts.index');
       });
