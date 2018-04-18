@@ -9,7 +9,9 @@
         {{uk-spinner}}
       {{/if}}
       {{#each preview as |photo|}}
-        <img src={{photo.thumbnailUrl}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom">
+        <img src={{photo.url}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom" width="150">
+        {{else}}
+        Nothing here!
       {{/each}}
     </div>
     {{/card.body}}

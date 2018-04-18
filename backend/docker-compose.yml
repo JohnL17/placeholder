@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   db:
     image: postgres
@@ -7,3 +7,13 @@ services:
     environment:
       - POSTGRES_USER=placeholder
       - POSTGRES_PASSWORD=placeholder
+
+  admin:
+    image: fenglc/pgadmin4
+    links:
+      - db
+    ports:
+      - '3001:5050'
+    environment:
+      - DEFAULT_USER=api
+      - DEFAULT_PASSWORD=123qwe

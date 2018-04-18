@@ -1,5 +1,5 @@
 <div class="uk-container uk-container-expand uk-background-primary">
-  <nav class="uk-navbar-container">
+  <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
     <div class="uk-navbar-left uk-background-primary uk-light">
       {{#link-to "index" class="uk-logo"}}
         Placeholder
@@ -9,11 +9,29 @@
           {{#link-to "posts" class="menu-posts"}}
             Posts
           {{/link-to}}
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active">
+                {{#link-to "posts.new" class="menu-posts"}}
+                  Create post
+                {{/link-to}}
+              </li>
+            </ul>
+          </div>
         </li>
         <li>
           {{#link-to "gallery" class="menu-posts"}}
             Gallery
           {{/link-to}}
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active">
+                {{#link-to "gallery.new" class="menu-posts"}}
+                  Create gallery
+                {{/link-to}}
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>

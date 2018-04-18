@@ -1,71 +1,71 @@
-import { module, test } from 'qunit'
-import { visit, currentURL, click } from '@ember/test-helpers'
-import { setupApplicationTest } from 'ember-qunit'
+import { module, test } from "qunit";
+import { visit, currentURL, click } from "@ember/test-helpers";
+import { setupApplicationTest } from "ember-qunit";
 
-module('Acceptance | list posts', function(hooks) {
-  setupApplicationTest(hooks)
+module("Acceptance | list posts", function(hooks) {
+  setupApplicationTest(hooks);
 
-  test('should show about as the home page', async function(assert) {
-    assert.expect(1)
+  test("should show about as the home page", async function(assert) {
+    assert.expect(1);
 
-    await visit('/')
+    await visit("/");
 
-    assert.equal(currentURL(), '/about', 'should redirect automatically')
-  })
+    assert.equal(currentURL(), "/about", "should redirect automatically");
+  });
 
-  test('should link to posts page', async function(assert) {
-    assert.expect(1)
+  test("should link to posts page", async function(assert) {
+    assert.expect(1);
 
-    await visit('/')
+    await visit("/");
 
-    await click('.menu-posts')
+    await click(".menu-posts");
 
-    assert.equal(currentURL(), '/posts', 'should navigate to posts')
-  })
+    assert.equal(currentURL(), "/posts", "should navigate to posts");
+  });
 
-  test('should list all posts.', async function(assert) {
-    assert.expect(1)
+  test("should list all posts.", async function(assert) {
+    assert.expect(1);
 
-    await visit('/posts')
+    await visit("/posts");
 
-    assert.dom('.uk-card').exists({ count: 100 })
-  })
+    assert.dom(".uk-card").exists({ count: 100 });
+  });
 
-  test('should show details for a selected post.', async function(assert) {
-    assert.expect(3)
+  test("should show details for a selected post.", async function(assert) {
+    assert.expect(3);
 
-    await visit('/posts/1')
+    await visit("/posts/1");
 
-    assert.equal(currentURL(), '/posts/1', 'should navigate to show route')
-
-    assert
-      .dom('.uk-card-title')
-      .hasText(
-        'sunt aut facere repellat provident occaecati excepturi optio reprehenderit'
-      )
+    assert.equal(currentURL(), "/posts/1", "should navigate to show route");
 
     assert
-      .dom('p')
+      .dom(".uk-card-title")
       .hasText(
-        'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'
-      )
-  })
+        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+      );
 
-  test('should list all albums.', async function(assert) {
-    assert.expect(1)
+    assert
+      .dom("p")
+      .hasText(
+        "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+      );
+  });
 
-    await visit('/gallery')
+  test("should list all albums.", async function(assert) {
+    assert.expect(1);
 
-    assert.dom('.uk-card').exists({ count: 100 })
-  })
+    await visit("/gallery");
 
-  test('should list all photos for selected album.', async function(assert) {
-    assert.expect(2)
+    assert.dom(".uk-card").exists({ count: 100 });
+  });
 
-    await visit('/gallery/1')
+  test("should list all photos for selected album.", async function(assert) {
+    assert.expect(2);
 
-    assert.equal(currentURL(), '/gallery/1', 'should navigate to show route')
+    await visit("/gallery/1");
 
-    assert.dom('img').exists({ count: 50 })
-  })
-})
+    assert.equal(currentURL(), "/gallery/1", "should navigate to show route");
+
+    assert.dom("img").exists({ count: 50 });
+  });
+});

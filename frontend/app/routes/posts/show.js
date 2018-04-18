@@ -1,11 +1,11 @@
-import Route from '@ember/routing/route'
+import Route from '@ember/routing/route';
+import {hash} from 'rsvp';
 
 export default Route.extend({
-  model(params) {
-    return this.store.findRecord('post', params.id)
+  model({id}) {
+    return hash({
+      post: this.store.findRecord('post', id),
+      comments: this.store.query('comment', {postId: id}),
+    });
   },
-
-  afterModel(model) {
-    return this.store.query('comment', { postId: model.id })
-  }
-})
+});

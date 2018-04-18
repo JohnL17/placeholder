@@ -1,0 +1,12 @@
+<form>
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Upload a photo</legend>
+        <div class="uk-margin">
+            {{input class="uk-input" value=newTitle placeholder="Title"}}
+        </div>
+        <div class="uk-margin">
+            {{input class="uk-input" value=newUrl placeholder="Url"}}
+        </div>
+        <button class="uk-button uk-button-primary" {{action 'uploadPicture'}}>Create</button>
+    </fieldset>
+</form>
