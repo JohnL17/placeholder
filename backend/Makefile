@@ -13,7 +13,6 @@ install-dev: ## Install development environment
 	@pip install --upgrade -r requirements.txt -r requirements-dev.txt .
 
 start: ## Start the development server
-	@docker-compose start
 	@python manage.py runserver
 
 test: ## Test the project

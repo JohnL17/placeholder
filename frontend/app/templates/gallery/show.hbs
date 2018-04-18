@@ -17,7 +17,7 @@
           {{#each model.photos as |photo|}}
             <div class="uk-margin-left uk-margin-right">
                 <a class="uk-inline" data-type="image" href={{photo.url}} caption={{photo.title}}>
-                    <img src={{photo.url}} alt={{photo.title}}>
+                    <img src={{photo.url}} alt={{photo.title}} width="100px">
                 </a>
             </div>
           {{/each}}
