@@ -1,0 +1,15 @@
+<form>
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Post a comment</legend>
+        <div class="uk-margin">
+            {{input class="uk-input" value=newTitle placeholder="Title"}}
+        </div>
+        <div class="uk-margin">
+            {{input class="uk-input" value=newEmail placeholder="Email"}}
+        </div>
+        <div class="uk-margin">
+            {{textarea class="uk-textarea" rows="5" value=newBody placeholder="Message"}}
+        </div>
+        <button class="uk-button uk-button-primary" {{action 'postComment'}}>Create</button>
+    </fieldset>
+</form>
