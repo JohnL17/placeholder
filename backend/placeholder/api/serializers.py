@@ -60,8 +60,9 @@ class AlbumSerializer(ModelSerializer):
         model = models.Album
         fields = [
             'title',
-            'photos'
+            'photos',
         ]
+        read_only_fields = ('photos',)
 
 
 class PhotoSerializer(ModelSerializer):
