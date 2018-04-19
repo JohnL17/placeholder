@@ -1,13 +1,13 @@
-import Controller from '@ember/controller';
+import Controller from "@ember/controller";
 
 export default Controller.extend({
   actions: {
     editGallery() {
-      this.get('model')
+      this.get("model")
         .save()
         .then(() => {
-          this.transitionToRoute('gallery.index');
+          this.transitionToRoute("gallery.index");
         });
-    },
-  },
+    }
+  }
 });

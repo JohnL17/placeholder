@@ -1,4 +1,4 @@
-import Controller from '@ember/controller';
+import Controller from "@ember/controller";
 
 export default Controller.extend({
   init() {
@@ -6,14 +6,14 @@ export default Controller.extend({
   },
   actions: {
     editPost() {
-      let post = this.get('model');
+      let post = this.get("model");
       post.setProperties({
-        title: this.get('model.title'),
-        body: this.get('model.body'),
+        title: this.get("model.title"),
+        body: this.get("model.body")
       });
       post.save().then(() => {
-        this.transitionToRoute('posts.index');
+        this.transitionToRoute("posts.index");
       });
-    },
-  },
+    }
+  }
 });
