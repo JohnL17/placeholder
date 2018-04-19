@@ -1,13 +1,13 @@
-import Controller from '@ember/controller';
+import Controller from "@ember/controller";
 
 export default Controller.extend({
   actions: {
     destroyGallery() {
-      this.get('model')
+      this.get("model")
         .destroyRecord()
         .then(() => {
-          this.transitionToRoute('gallery.index');
+          this.transitionToRoute("gallery.index");
         });
-    },
-  },
+    }
+  }
 });

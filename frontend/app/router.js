@@ -11,6 +11,7 @@ Router.map(function() {
     this.route("show", { path: ":id" });
     this.route("new");
     this.route("edit", { path: ":post_id/edit" });
+    this.route("comment", { path: ":post_id/comment" });
   });
   this.route("about");
   this.route("gallery", function() {

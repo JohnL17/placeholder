@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 
 export default Route.extend({
-  model() {
-    return this.store.findAll("album", { include: "photos" });
+  model({ post_id }) {
+    return this.get("store").findRecord("post", post_id);
   }
 });
