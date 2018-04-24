@@ -20,6 +20,8 @@ Router.map(function() {
     this.route("edit", { path: ":album_id/edit" });
     this.route("upload", { path: ":album_id/upload" });
   });
+  this.route('login');
+  this.route('registration');
 });
 
 export default Router;

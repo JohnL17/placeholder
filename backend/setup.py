@@ -10,4 +10,5 @@ setup(
     description='Placeholder backend',
     url='https://adfinis-sygroup.ch/',
     packages=find_packages(),
+    install_requires=('djangorestframework-jwt')
 )

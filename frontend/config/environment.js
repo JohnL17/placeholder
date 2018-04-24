@@ -21,6 +21,21 @@ module.exports = function(environment) {
       usingCors: false
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    "ember-simple-auth-token": {
+      serverTokenEndpoint: "/api/v1/auth/login",
+      identificationField: "username",
+      passwordField: "password",
+      tokenPropertyName: "token",
+      refreshTokenPropertyName: "token",
+      authorizationPrefix: "Bearer ",
+      authorizationHeaderName: "Authorization",
+      headers: {},
+      refreshAccessTokens: true,
+      serverTokenRefreshEndpoint: "/api/v1/auth/refresh",
+      tokenExpireName: "exp",
+      refreshLeeway: 300
     }
   };
 

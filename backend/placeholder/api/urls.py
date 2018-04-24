@@ -1,6 +1,7 @@
 """URL to view mapping for the backend."""
 
 from rest_framework.routers import SimpleRouter
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from placeholder.api import views
 
