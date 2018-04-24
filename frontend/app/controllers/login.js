@@ -3,20 +3,18 @@ import { inject as service } from "@ember/service";
 
 export default Controller.extend({
   session: service("session"),
+  notify: service("notify"),
 
   actions: {
-    authenticate() {
-      this.get("session")
-        .authenticate(
+    async authenticate() {
+      try {
+        await this.get("session").authenticate(
           "authenticator:jwt",
           this.getProperties("identification", "password")
-        )
-        .then(() => {
-          console.log("logged in");
-        })
-        .catch(err => {
-          console.log("error", err);
-        });
+        );
+      } catch (e) {
+        this.get("notify").error("Wrong username or password");
+      }
     }
   }
 });

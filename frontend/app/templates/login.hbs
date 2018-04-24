@@ -1,21 +1,14 @@
-<div class="page page-login">
-  <div class="page-viewport">
-    <main class="page-main">
-      <div class="page-content">
-        <div class="login-form">
-          <form class="form-inline" {{action 'authenticate' on='submit' }}>
-            <div class="form-group login-form-user">
-              {{input type='text' placeholder='Username' class='form-control' value=identification autofocus=true}}
-            </div>
-            <div class="form-group login-form-password">
-              {{input type='password' placeholder='Password' class='form-control' value=password}}
-            </div>
-            <button type="submit" class="btn btn-primary" disabled= {{authenticate.isRunning}}>
-              {{#if authenticate.isRunning}} Logging in{{uk-spinner}} {{else}}Login {{/if}}
-            </button>
-          </form>
-        </div>
-      </div>
-    </main>
-  </div>
-</div>
+<form {{action 'authenticate' on='submit' }}>
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Login</legend>
+    <div class="uk-margin">
+      {{input type='text' placeholder='Username' class='uk-input' value=identification autofocus=true}}
+    </div>
+    <div class="uk-margin">
+      {{input type='password' placeholder='Password' class='uk-input' value=password}}
+    </div>
+    <button type="submit" class="uk-button uk-button-primary" disabled= {{authenticate.isRunning}}>
+      {{#if authenticate.isRunning}} Logging in{{uk-spinner}} {{else}}Login {{/if}}
+    </button>
+  </fieldset>
+</form>
