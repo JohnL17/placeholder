@@ -4,7 +4,7 @@ import { inject as service } from "@ember/service";
 
 export default JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: "/api/v1",
-  session: service("session"),
+  session: service(),
   authorize(xhr) {
     let { token } = this.get("session.data.authenticated");
     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
