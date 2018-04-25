@@ -24,17 +24,9 @@ module.exports = function(environment) {
     },
 
     "ember-simple-auth-token": {
-      serverTokenEndpoint: "/api/v1/auth/login",
-      identificationField: "username",
-      passwordField: "password",
-      tokenPropertyName: "token",
       refreshTokenPropertyName: "token",
-      authorizationPrefix: "Bearer ",
-      authorizationHeaderName: "Authorization",
-      headers: {},
-      refreshAccessTokens: true,
+      serverTokenEndpoint: "/api/v1/auth/login",
       serverTokenRefreshEndpoint: "/api/v1/auth/refresh",
-      tokenExpireName: "exp",
       refreshLeeway: 300
     }
   };

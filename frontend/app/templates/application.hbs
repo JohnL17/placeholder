@@ -34,7 +34,7 @@
           {{#link-to "registration" class="menu-posts" }} Registration {{/link-to}}
         </li>
         <li>
-          {{#link-to "index" class="menu-posts" invokeAction=(action 'logout') }} Logout {{/link-to}}
+          <a href="index" class="menu-posts" {{action 'logout'}}>Logout</a>
         </li>
       </ul>
     </div>
