@@ -9,5 +9,5 @@ setup(
     author_email='https://adfinis-sygroup.ch/',
     description='Placeholder backend',
     url='https://adfinis-sygroup.ch/',
-    packages=find_packages(),
+    packages=find_packages()
 )
