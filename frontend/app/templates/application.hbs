@@ -27,15 +27,21 @@
     </div>
     <div class="uk-navbar-right uk-background-primary uk-light">
       <ul class="uk-navbar-nav">
-        <li>
-          {{#link-to "login" class="menu-posts" }} Login {{/link-to}}
-        </li>
-        <li>
-          {{#link-to "registration" class="menu-posts" }} Registration {{/link-to}}
-        </li>
-        <li>
-          <a href="index" class="menu-posts" {{action 'logout'}}>Logout</a>
-        </li>
+        {{#if session.isAuthenticated}}
+          <li>
+            {{#link-to "me" class="menu-posts" }} My profile {{/link-to}}
+          </li>
+          <li>
+            <a href="index" class="menu-posts" {{action 'logout'}}>Logout</a>
+          </li>
+        {{else}}
+          <li>
+            {{#link-to "login" class="menu-posts" }} Login {{/link-to}}
+          </li>
+          <li>
+            {{#link-to "registration" class="menu-posts" }} Registration {{/link-to}}
+          </li>
+        {{/if}}
       </ul>
     </div>
   </nav>

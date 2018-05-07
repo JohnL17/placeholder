@@ -22,6 +22,8 @@ Router.map(function() {
   });
   this.route("login");
   this.route("registration");
+  this.route("activate", { path: "/activate/:uid/:token" });
+  this.route("me");
 });
 
 export default Router;

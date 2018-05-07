@@ -1,5 +1,4 @@
 """Serializers for the projects app."""
-from django.contrib.auth import get_user_model
 from rest_framework_json_api.serializers import ModelSerializer
 
 from placeholder.api import models
@@ -12,11 +11,13 @@ class UserSerializer(ModelSerializer):
         """Meta information for the user serializer."""
 
         model = models.User
-        fields = (
-            get_user_model().REQUIRED_FIELDS + [
-                get_user_model().USERNAME_FIELD
-            ]
-        )
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+            'password',
+        ]
 
 
 class PostSerializer(ModelSerializer):
