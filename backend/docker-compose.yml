@@ -17,3 +17,9 @@ services:
     environment:
       - DEFAULT_USER=api
       - DEFAULT_PASSWORD=123qwe
+  
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
