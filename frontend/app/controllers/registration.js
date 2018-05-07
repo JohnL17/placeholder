@@ -6,17 +6,12 @@ export default Controller.extend({
 
   actions: {
     createUser() {
-      if (this.get("newPassword") === this.get("confirmPassword")) {
-        let newRecord = this.store.createRecord("user", {
-          username: this.get("newUsername"),
-          firstName: this.get("newFirstName"),
-          lastName: this.get("newLastName"),
-          email: this.get("newEmail"),
-          password: this.get("newPassword")
-        });
-        newRecord.save().then(() => {
-          this.transitionToRoute("login");
-        });
+      if (this.get("model.password") === this.get("confirmPassword")) {
+        this.get("model")
+          .save()
+          .then(() => {
+            this.transitionToRoute("login");
+          });
       } else {
         this.get("notify").error("Passwords are not equal");
       }
