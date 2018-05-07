@@ -9,12 +9,11 @@ export default Controller.extend({
       if (this.get("newPassword") === this.get("confirmPassword")) {
         let newRecord = this.store.createRecord("user", {
           username: this.get("newUsername"),
-          first_name: this.get("newFirstName"),
-          last_name: this.get("newLastName"),
+          firstName: this.get("newFirstName"),
+          lastName: this.get("newLastName"),
           email: this.get("newEmail"),
           password: this.get("newPassword")
         });
-        console.log(newRecord);
         newRecord.save().then(() => {
           this.transitionToRoute("login");
         });

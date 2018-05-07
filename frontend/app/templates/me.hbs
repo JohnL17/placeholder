@@ -4,13 +4,14 @@
     <legend class="uk-legend">My profile</legend>
     <dl class="uk-description-list uk-description-list-divider">
       <dt>First name</dt>
-      <dd class="uk-margin-top">{{model.first_name}} </dd>
+      {{input class="uk-margin-top uk-input" value=model.first_name}}
       <dt>Last name</dt>
-      <dd class="uk-margin-top">{{model.last_name}}</dd>
+      {{input class="uk-margin-top uk-input" value=model.last_name}}
       <dt>Username</dt>
-      <dd class="uk-margin-top">{{model.username}}</dd>
+      {{input class="uk-margin-top uk-input" value=model.username}}
       <dt>Email</dt>
-      <dd class="uk-margin-top">{{model.email}}</dd>
+      {{input class="uk-margin-top uk-input" value=model.email}}
     </dl>
+    <button class="uk-button uk-button-primary" {{action 'editProfile'}}>Edit</button>
   </fieldset>
 </form>
