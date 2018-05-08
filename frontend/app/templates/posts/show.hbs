@@ -1,5 +1,4 @@
 <h3>Show post</h3>
-
 <div class="">
   <div class="uk-card uk-card-default">
     <div class="uk-card-media-top">
@@ -9,18 +8,20 @@
       <h3 class="uk-card-title">{{model.post.title}}</h3>
       <p>{{model.post.body}}</p>
       <div class="uk-flex">
-      {{#link-to "posts.edit" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-width-1-1"}}
-        Edit post
-      {{/link-to}}
-      {{#link-to "posts.comment" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"}}
-        Post a comment
-      {{/link-to}}
-      <button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" {{action 'destroyPost'}}>Delete post</button>
+        {{#link-to "posts.edit" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
+          Edit post
+        {{/link-to}}
+        {{#link-to "posts.comment" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"
+          }}
+          Post a comment
+        {{/link-to}}
+        {{#if session.isAuthenticated}}
+          <button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" {{action 'destroyPost'}}>Delete post</button>
+        {{/if}}
       </div>
     </div>
   </div>
 </div>
-
 {{#each model.comments as |comment|}}
   <article class="uk-comment uk-comment-primary uk-margin-top">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>

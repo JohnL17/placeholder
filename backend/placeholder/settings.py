@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'placeholder.api.apps.DefaultConfig',
+    'rest_framework',
+    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -182,3 +184,26 @@ def parse_admins(admins):
 
 
 ADMINS = parse_admins(env.list('DJANGO_ADMINS', default=[]))
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {'user': 'placeholder.api.serializers.UserSerializer'}
+}
+
+# Domain and Site_name of templated-mails (Djoser) library
+
+DOMAIN = 'localhost:4200'
+SITE_NAME = 'Placeholder'
+
+
+# Mailserver login settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'Placeholder <placeholder@placeholder.com>'

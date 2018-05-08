@@ -1,0 +1,16 @@
+<form>
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">My profile</legend>
+    <dl class="uk-description-list uk-description-list-divider">
+      <dt>First name</dt>
+      {{input class="uk-margin-top uk-input" value=model.firstName}}
+      <dt>Last name</dt>
+      {{input class="uk-margin-top uk-input" value=model.lastName}}
+      <dt>Username</dt>
+      {{input class="uk-margin-top uk-input" value=model.username}}
+      <dt>Email</dt>
+      {{input class="uk-margin-top uk-input" value=model.email}}
+    </dl>
+    <button class="uk-button uk-button-primary" {{action 'editProfile'}}>Edit</button>
+  </fieldset>
+</form>

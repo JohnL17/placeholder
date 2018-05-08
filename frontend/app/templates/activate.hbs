@@ -1,0 +1,11 @@
+{{#if model.ok}}
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Activation was successful</p>
+  </div>
+{{else}}
+  <div class="uk-alert-danger" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Activation was not successful. Please try again</p>
+  </div>
+{{/if}}

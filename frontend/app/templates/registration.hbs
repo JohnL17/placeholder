@@ -1,0 +1,30 @@
+<form {{action "createUser" on="submit"}}>
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Registration</legend>
+    <div class="uk-margin">
+      <label for="username">Username</label>
+      {{input type="text" class="uk-input" autofocus=true value=model.username}}
+    </div>
+    <div class="uk-margin">
+      <label for="first_name">First name</label>
+      {{input type="text" class="uk-input" autofocus=true value=model.firstName}}
+    </div>
+    <div class="uk-margin">
+      <label for="last_name">Last name</label>
+      {{input type="text" class="uk-input" autofocus=true value=model.lastName}}
+    </div>
+    <div class="uk-margin">
+      <label for="email">Email</label>
+      {{input type="text" class="uk-input" value=model.email}}
+    </div>
+    <div class="uk-margin">
+      <label for="password">Password</label>
+      {{input type="password" class="uk-input" value=model.password type="password"}}
+    </div>
+    <div class="uk-margin">
+      <label for="password">Password confirmation</label>
+      {{input type="password" class="uk-input" value=confirmPassword type="password"}}
+    </div>
+    <button type="submit" class="uk-button uk-button-primary">Register</button>
+  </fieldset>
+</form>
