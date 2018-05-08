@@ -15,7 +15,6 @@ export default Route.extend({
 
     return fetch("/api/v1/auth/activate", {
       method: "post",
-      dataType: "json",
       headers: {
         Accept: "application/vnd.api+json",
         "Content-Type": "application/vnd.api+json"

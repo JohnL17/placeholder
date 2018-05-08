@@ -13,7 +13,7 @@ export default Controller.extend({
             this.transitionToRoute("login");
           });
       } else {
-        this.get("notify").error("Passwords are not equal");
+        this.get("notify").error("Passwords do not match");
       }
     }
   }
