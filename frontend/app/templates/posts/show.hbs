@@ -8,7 +8,7 @@
       <h3 class="uk-card-title">{{model.post.title}}</h3>
       <p>{{model.post.body}}</p>
       <div class="uk-flex">
-        {{#link-to "posts.edit" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
+        {{#link-to "posts.edit" model.post.id class="uk-button edit-post uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
           Edit post
         {{/link-to}}
         {{#link-to "posts.comment" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"

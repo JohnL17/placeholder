@@ -8,17 +8,17 @@
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
               <li class="uk-active">
-                {{#link-to "posts.new" class="menu-posts" }} Create post {{/link-to}}
+                {{#link-to "posts.new" class="menu-create-posts" }} Create post {{/link-to}}
               </li>
             </ul>
           </div>
         </li>
         <li>
-          {{#link-to "gallery" class="menu-posts" }} Gallery {{/link-to}}
+          {{#link-to "gallery" class="menu-galleries" }} Gallery {{/link-to}}
           <div class="uk-navbar-dropdown">
             <ul class="uk-nav uk-navbar-dropdown-nav">
               <li class="uk-active">
-                {{#link-to "gallery.new" class="menu-posts" }} Create gallery {{/link-to}}
+                {{#link-to "gallery.new" class="menu-galleries" }} Create gallery {{/link-to}}
               </li>
             </ul>
           </div>
@@ -29,17 +29,17 @@
       <ul class="uk-navbar-nav">
         {{#if session.isAuthenticated}}
           <li>
-            {{#link-to "me" class="menu-posts" }} My profile {{/link-to}}
+            {{#link-to "me" class="menu-me" }} My profile {{/link-to}}
           </li>
           <li>
-            <a href="index" class="menu-posts" {{action 'logout'}}>Logout</a>
+            <a href="index" class="menu-logout" {{action 'logout'}}>Logout</a>
           </li>
         {{else}}
           <li>
-            {{#link-to "login" class="menu-posts" }} Login {{/link-to}}
+            {{#link-to "login" class="menu-login" }} Login {{/link-to}}
           </li>
           <li>
-            {{#link-to "registration" class="menu-posts" }} Registration {{/link-to}}
+            {{#link-to "registration" class="menu-registration" }} Registration {{/link-to}}
           </li>
         {{/if}}
       </ul>

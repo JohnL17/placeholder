@@ -1,5 +1,5 @@
 {{#link-to 'gallery.show' album.id class='uk-link-reset'}}
-  {{#uk-card color='default' hover=true class='uk-margin-bottom uk-width-1-2 uk-align-center' as |card|}}
+  {{#uk-card color='default' hover=true class='uk-margin-bottom uk-width-1-2 uk-align-center' data-test-gallery=gallery.id as |card|}}
     {{#card.header}}
       {{#card.title class="uk-text-center"}}{{album.title}}{{/card.title}}
     {{/card.header}}
