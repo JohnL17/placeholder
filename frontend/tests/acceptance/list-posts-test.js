@@ -150,6 +150,16 @@ module("Acceptance | list posts", function(hooks) {
     );
   });
 
+  test("check activation url", async function(assert) {
+    assert.expect(1);
+
+    defaultScenario(server);
+
+    await visit("/activate/1/123qwe");
+
+    assert.equal(currentURL(), "/activate/1/123qwe", "check activation url");
+  });
+
   test("the user can access the user profile", async function(assert) {
     assert.expect(1);
 
@@ -271,7 +281,7 @@ module("Acceptance | list posts", function(hooks) {
   });
 
   test("the user can create a gallery", async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     defaultScenario(server);
 
@@ -279,11 +289,35 @@ module("Acceptance | list posts", function(hooks) {
 
     await visit("/gallery/new");
 
+    assert.equal(
+      currentURL(),
+      "/gallery/new",
+      "Should navigate to create a gallery"
+    );
+
     await fillIn(".uk-input", "My new gallery");
 
     await click(".uk-button");
 
     assert.dom(".uk-card-title").hasText("My new gallery");
+  });
+
+  test("the user can edit a gallery", async function(assert) {
+    assert.expect(1);
+
+    defaultScenario(server);
+
+    await authenticateSession();
+
+    await visit("/gallery/1");
+
+    await click(".edit-gallery");
+
+    await fillIn(".uk-input", "Edited gallery");
+
+    await click(".uk-button");
+
+    assert.dom(".uk-card-title").hasText("Edited gallery");
   });
 
   test("the user can upload a picture to a gallery", async function(assert) {

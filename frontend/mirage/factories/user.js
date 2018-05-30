@@ -5,7 +5,7 @@ export default Factory.extend({
   lastLogin: "2018-04-23 11:31:50.386151+00",
   isSuperuser: true,
   username: "admin",
-  fistName: "admin",
+  firstName: "admin",
   lastName: "admin",
   email: "admin@example.com",
   istStaff: true,

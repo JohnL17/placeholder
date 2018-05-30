@@ -9,8 +9,8 @@
         {{uk-spinner}}
       {{/if}}
       {{#each preview as |photo|}}
-        <img src={{photo.url}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom" width="150">
-        {{else}}
+        <img src={{photo.url}} alt={{photo.title}} class="uk-margin-small-right uk-margin-small-left uk-margin-small-top uk-margin-small-bottom" data-test-photo="{{photo.title}}" width="150">
+      {{else}}
         Nothing here!
       {{/each}}
     </div>
