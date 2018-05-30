@@ -5,7 +5,7 @@ module("Unit | Route | gallery/upload", function(hooks) {
   setupTest(hooks);
 
   test("it exists", function(assert) {
-    let route = this.owner.lookup("route:gallery/upload");
+    const route = this.owner.lookup("route:gallery/upload");
     assert.ok(route);
   });
 });
