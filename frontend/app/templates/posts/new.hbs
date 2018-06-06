@@ -2,11 +2,11 @@
     <fieldset class="uk-fieldset">
         <legend class="uk-legend">Create a post</legend>
         <div class="uk-margin">
-            {{input class="uk-input" value=newTitle placeholder="Title"}}
+            {{input data-test-post-title class="uk-input" value=newTitle placeholder="Title"}}
         </div>
         <div class="uk-margin">
-            {{textarea class="uk-textarea" rows="5" value=newBody placeholder="Body"}}
+            {{textarea data-test-post-body class="uk-textarea" rows="5" value=newBody placeholder="Body"}}
         </div>
-        <button class="uk-button uk-button-primary" {{action 'createPost'}}>Create</button>
+        <button class="uk-button uk-button-primary" data-test-post-create-button {{action 'createPost'}}>Create</button>
     </fieldset>
 </form> 

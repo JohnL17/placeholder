@@ -6,6 +6,7 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
   authorize(xhr) {
     let { token } = this.get("session.data.authenticated");
     if (token) {
+      /* istanbul ignore next */
       xhr.setRequestHeader("Authorization", `JWT ${token}`);
     }
   }

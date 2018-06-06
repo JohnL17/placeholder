@@ -1,12 +1,24 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Controller | posts/edit", function(hooks) {
+module("Unit | Controller | posts/edit", async function(hooks) {
   setupTest(hooks);
 
-  // Replace this with your real tests.
-  test("it exists", function(assert) {
-    let controller = this.owner.lookup("controller:posts/edit");
-    assert.ok(controller);
+  test("The user can edit a post", function(assert) {
+    assert.expect(2);
+
+    const controller = this.owner.lookup("controller:posts/edit");
+
+    controller.set("model", {
+      save: () => {
+        assert.ok(true);
+        return new Promise(res => res());
+      }
+    });
+    controller.set("transitionToRoute", path => {
+      assert.equal("posts.index", path);
+    });
+
+    controller.send("editPost");
   });
 });

@@ -3,15 +3,15 @@
   <div class="uk-card-body">
     <h3 class="uk-card-title">{{model.title}}</h3>
     <div class="uk-flex">
-      {{#link-to "gallery.edit" model.id class="uk-button uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
+      {{#link-to data-test-edit-gallery "gallery.edit" model.id class="uk-button edit-gallery uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
         Edit gallery
       {{/link-to}}
-      {{#link-to "gallery.upload" model.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"
+      {{#link-to data-test-upload "gallery.upload" model.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"
         }}
         Upload pictures
       {{/link-to}}
       {{#if session.isAuthenticated}}
-        <button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" {{action 'destroyGallery'}}>Delete gallery</button>
+        <button data-test-delete-gallery-button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" {{action 'destroyGallery'}}>Delete gallery</button>
       {{/if}}
     </div>
   </div>
@@ -20,7 +20,7 @@
       {{#each model.photos as |photo|}}
         <div class="uk-margin-left uk-margin-right">
           <a class="uk-inline" data-type="image" href= {{photo.url}} caption= {{photo.title}}>
-            <img src= {{photo.url}} alt= {{photo.title}} width="100px">
+            <img src= {{photo.url}} alt= {{photo.title}} width="100px" data-test-photo="{{photo.id}}">
           </a>
         </div>
       {{/each}}

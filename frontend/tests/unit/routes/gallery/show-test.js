@@ -5,7 +5,7 @@ module("Unit | Route | gallery/show", function(hooks) {
   setupTest(hooks);
 
   test("it exists", function(assert) {
-    let route = this.owner.lookup("route:gallery/show");
+    const route = this.owner.lookup("route:gallery/show");
     assert.ok(route);
   });
 });

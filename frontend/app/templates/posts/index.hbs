@@ -3,11 +3,11 @@
 <div class="uk-container-expand">
 {{#each model as |post|}}
   {{#link-to 'posts.show' post.id class='uk-link-reset'}}
-    {{#uk-card color='default' hover=true class='uk-margin-bottom' as |card|}}
+    {{#uk-card color='default' hover=true class='uk-margin-bottom' data-test-posts=post.id as |card|}}
       {{#card.header}}
-        {{#card.title}}{{post.title}}{{/card.title}}
+        {{#card.title data-test-post-title=post.id}}{{post.title}}{{/card.title}}
       {{/card.header}}
-      {{#card.body}}{{post.body}}{{/card.body}}
+      {{#card.body data-test-post-body=post.id}}{{post.body}}{{/card.body}}
     {{/uk-card}}
   {{/link-to}}
 {{/each}}
