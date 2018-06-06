@@ -5,38 +5,38 @@
       <img src="https://picsum.photos/900/500?image={{model.post.id}}" width="1630" alt="post picture">
     </div>
     <div class="uk-card-body">
-      <h3 class="uk-card-title">{{model.post.title}}</h3>
-      <p>{{model.post.body}}</p>
+      <h3 class="uk-card-title" data-test-post-title="{{model.post.id}}">{{model.post.title}}</h3>
+      <p data-test-post-body="{{model.post.id}}">{{model.post.body}}</p>
       <div class="uk-flex">
-        {{#link-to "posts.edit" model.post.id class="uk-button edit-post uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
+        {{#link-to "posts.edit" data-test-edit-post model.post.id class="uk-button edit-post uk-button-primary uk-margin-small-bottom uk-width-1-1" }}
           Edit post
         {{/link-to}}
-        {{#link-to "posts.comment" model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"
+        {{#link-to "posts.comment" data-test-create-comment model.post.id class="uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-left uk-margin-small-right uk-width-1-1"
           }}
           Post a comment
         {{/link-to}}
         {{#if session.isAuthenticated}}
-          <button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" {{action 'destroyPost'}}>Delete post</button>
+          <button class="uk-button uk-button-danger uk-margin-small-bottom uk-width-1-1" data-test-delete-post-button {{action 'destroyPost'}}>Delete post</button>
         {{/if}}
       </div>
     </div>
   </div>
 </div>
 {{#each model.comments as |comment|}}
-  <article class="uk-comment uk-comment-primary uk-margin-top">
+  <article class="uk-comment uk-comment-primary uk-margin-top" data-test-comment="{{comment.id}}">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
       <div class="uk-width-auto">
         <img class="uk-comment-avatar" src="https://api.adorable.io/avatars/80/{{comment.email}}" width="80" height="80" alt="comment picture">
       </div>
       <div class="uk-width-expand">
-        <h4 class="uk-comment-title uk-margin-remove">{{comment.title}}</h4>
+        <h4 data-test-comment-title="{{comment.id}}" class="uk-comment-title uk-margin-remove">{{comment.title}}</h4>
         <ul class="uk-comment-meta uk-subnav uk-margin-remove-top">
-          <li>{{comment.email}}</li>
+          <li data-test-comment-email="{{comment.id}}" >{{comment.email}}</li>
         </ul>
       </div>
     </header>
     <div class="uk-comment-body">
-      <p>{{comment.body}}</p>
+      <p data-test-comment-body="{{comment.id}}">{{comment.body}}</p>
     </div>
   </article>
 {{/each}}

@@ -2,11 +2,11 @@
     <fieldset class="uk-fieldset">
         <legend class="uk-legend">Upload a photo</legend>
         <div class="uk-margin">
-            {{input class="uk-input photo-title" value=newTitle placeholder="Title"}}
+            {{input data-test-photo-title class="uk-input photo-title" value=newTitle placeholder="Title"}}
         </div>
         <div class="uk-margin">
-            {{input class="uk-input photo-url" value=newUrl placeholder="Url"}}
+            {{input data-test-photo-url class="uk-input photo-url" value=newUrl placeholder="Url"}}
         </div>
-        <button class="uk-button uk-button-primary" {{action 'uploadPicture'}}>Create</button>
+        <button class="uk-button uk-button-primary" data-test-upload-photo-button {{action 'uploadPicture'}}>Create</button>
     </fieldset>
 </form>

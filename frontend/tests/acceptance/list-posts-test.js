@@ -3,8 +3,6 @@ import { module, test } from "qunit";
 import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import startApp from "../helpers/start-app";
-import destroyApp from "../helpers/destroy-app";
-import defaultScenario from "../../mirage/scenarios/default";
 import { authenticateSession } from "ember-simple-auth/test-support";
 
 module("Acceptance | list posts", function(hooks) {
@@ -13,10 +11,6 @@ module("Acceptance | list posts", function(hooks) {
 
   hooks.beforeEach(function() {
     this.application = startApp();
-  });
-
-  hooks.afterEach(function() {
-    destroyApp(this.application);
   });
 
   test("should show about as the home page", async function(assert) {
@@ -32,7 +26,7 @@ module("Acceptance | list posts", function(hooks) {
 
     await visit("/");
 
-    await click(".menu-posts");
+    await click("[data-test-nav-posts]");
 
     assert.equal(currentURL(), "/posts", "should navigate to posts");
   });
@@ -40,37 +34,39 @@ module("Acceptance | list posts", function(hooks) {
   test("should list all posts", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.createList("post", 10);
 
     await visit("/posts");
 
-    assert.equal(find(".uk-card").length, 10);
+    assert.dom(".uk-card").exists({ count: 10 });
   });
 
   test("should list all comments for selected post.", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("post");
+
+    server.createList("comment", 10);
 
     await visit("/posts/1");
 
     assert.equal(currentURL(), "/posts/1", "should navigate to show route");
 
-    assert.equal(find("article").length, 10);
+    assert.dom("[data-test-comment]").exists({ count: 10 });
   });
 
   test("should show details for a selected post.", async function(assert) {
     assert.expect(3);
 
-    defaultScenario(server);
+    server.create("post");
 
     await visit("/posts/1");
 
     assert.equal(currentURL(), "/posts/1", "should navigate to show route");
 
-    assert.dom(".uk-card-title").hasText("Post 0");
+    assert.dom("[data-test-post-title").hasText("Post 0");
 
-    assert.dom("p").hasText("Hello World");
+    assert.dom("[data-test-post-body]").hasText("Hello World");
   });
 
   test("should link to gallery page", async function(assert) {
@@ -78,7 +74,7 @@ module("Acceptance | list posts", function(hooks) {
 
     await visit("/");
 
-    await click(".menu-galleries");
+    await click("[data-test-nav-gallery]");
 
     assert.equal(currentURL(), "/gallery", "should navigate to posts");
   });
@@ -86,23 +82,25 @@ module("Acceptance | list posts", function(hooks) {
   test("should list all galleries", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.createList("album", 10);
 
     await visit("/gallery");
 
-    assert.equal(find(".uk-card").length, 10);
+    assert.dom("[data-test-galleries]").exists({ count: 10 });
   });
 
   test("should list all photos for selected album.", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("album");
+
+    server.createList("photo", 10);
 
     await visit("/gallery/1");
 
     assert.equal(currentURL(), "/gallery/1", "should navigate to show route");
 
-    assert.equal(find("img").length, 1);
+    assert.dom("[data-test-photo]").exists({ count: 10 });
   });
 
   test("should link to login page", async function(assert) {
@@ -110,7 +108,7 @@ module("Acceptance | list posts", function(hooks) {
 
     await visit("/");
 
-    await click(".menu-login");
+    await click("[data-test-nav-login]");
 
     assert.equal(currentURL(), "/login", "should navigate to login");
   });
@@ -120,7 +118,7 @@ module("Acceptance | list posts", function(hooks) {
 
     await visit("/");
 
-    await click(".menu-registration");
+    await click("[data-test-nav-registration]");
 
     assert.equal(
       currentURL(),
@@ -132,28 +130,21 @@ module("Acceptance | list posts", function(hooks) {
   test("log a user in", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
 
     await authenticateSession();
 
     await visit("/");
 
-    assert.equal(
-      find(".menu-login").length > 0,
-      false,
-      "An authenticated user should not see the login button"
-    );
-    assert.equal(
-      find(".menu-logout").length > 0,
-      true,
-      "An authenticated user should see the logout button"
-    );
+    assert.dom("[data-test-nav-login]").doesNotExist();
+
+    assert.dom("[data-test-nav-logout]").exists();
   });
 
   test("check activation url", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.create("user");
 
     await visit("/activate/1/123qwe");
 
@@ -163,13 +154,13 @@ module("Acceptance | list posts", function(hooks) {
   test("the user can access the user profile", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.create("user");
 
     await authenticateSession();
 
     await visit("/");
 
-    await click(".menu-me");
+    await click("[data-test-nav-me]");
 
     assert.equal(currentURL(), "/me", "The user can access the user profile");
   });
@@ -177,13 +168,13 @@ module("Acceptance | list posts", function(hooks) {
   test("log a user out", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.create("user");
 
     await authenticateSession();
 
     await visit("/");
 
-    await click(".menu-logout");
+    await click("[data-test-nav-logout]");
 
     assert.equal(currentURL(), "/about", "should navigate to about");
   });
@@ -191,103 +182,109 @@ module("Acceptance | list posts", function(hooks) {
   test("the user can create a post", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
 
     await authenticateSession();
 
-    await visit("/posts/new");
+    await visit("/");
 
-    await fillIn(".uk-input", "My new post");
+    await click("[data-test-nav-create-post]");
 
-    await fillIn(".uk-textarea", "This is a test post");
+    await fillIn("[data-test-post-title]", "My new post");
 
-    await click(".uk-button");
+    await fillIn("[data-test-post-body]", "This is a test post");
 
-    assert.dom(".uk-card-title").hasText("My new post");
-    assert.dom(".uk-card-body").hasText("This is a test post");
+    await click("[data-test-post-create-button]");
+
+    assert.dom("[data-test-post-title='1']").hasText("My new post");
+
+    assert.dom("[data-test-post-body='1']").hasText("This is a test post");
   });
 
   test("the user can edit a post", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.create("post");
 
     await authenticateSession();
 
     await visit("/posts/1");
 
-    await click(".edit-post");
+    await click("[data-test-edit-post]");
 
-    await fillIn(".uk-input", "Edited post");
+    await fillIn("[data-test-post-edit-title]", "Edited post");
 
-    await fillIn(".uk-textarea", "Edited message");
+    await fillIn("[data-test-post-edit-body]", "Edited message");
 
-    await click(".uk-button");
+    await click("[data-test-edit-post-button]");
 
     await visit("/posts");
 
-    assert.dom(".uk-card-title").hasText("Edited post");
-    assert.dom(".uk-card-body").hasText("Edited message");
+    assert.dom("[data-test-post-title='1']").hasText("Edited post");
+
+    assert.dom("[data-test-post-body='1']").hasText("Edited message");
   });
 
   test("the user can delete a post", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.createList("post", 10);
 
     await authenticateSession();
 
     await visit("/posts/10");
 
-    await click(".uk-button-danger");
+    await click("[data-test-delete-post-button]");
 
     assert.dom('[data-test-posts="10"]').doesNotExist();
+
     assert.equal(currentURL(), "/posts", "Should navigate to posts");
   });
 
   test("the user can create a comment in a post", async function(assert) {
     assert.expect(3);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.create("post");
 
     await authenticateSession();
 
     await visit("/posts/1");
 
-    await click(".uk-margin-small-right");
+    await click("[data-test-create-comment]");
 
-    await fillIn(".comment-title", "My new comment");
+    await fillIn("[data-test-comment-title]", "My new comment");
 
-    await fillIn(".comment-email", "My email");
+    await fillIn("[data-test-comment-email]", "My email");
 
-    await fillIn(".comment-message", "My message");
+    await fillIn("[data-test-comment-message]", "My message");
 
-    await click(".uk-button");
+    await click("[data-test-create-comment-button]");
 
     await visit("/posts/1");
 
-    assert.equal(
-      find("article.uk-comment h4.uk-comment-title:last").text(),
-      "My new comment"
-    );
-    assert.equal(
-      find("article.uk-comment ul.uk-comment-meta li:last").text(),
-      "My email"
-    );
-    assert.equal(
-      find("article.uk-comment div.uk-comment-body p:last").text(),
-      "My message"
-    );
+    assert.dom("[data-test-comment-title='1']").hasText("My new comment");
+
+    assert.dom("[data-test-comment-email='1']").hasText("My email");
+
+    assert.dom("[data-test-comment-body='1']").hasText("My message");
   });
 
   test("the user can create a gallery", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
 
     await authenticateSession();
 
-    await visit("/gallery/new");
+    await visit("/");
+
+    await click("[data-test-nav-create-gallery]");
 
     assert.equal(
       currentURL(),
@@ -295,63 +292,72 @@ module("Acceptance | list posts", function(hooks) {
       "Should navigate to create a gallery"
     );
 
-    await fillIn(".uk-input", "My new gallery");
+    await fillIn("[data-test-gallery-title]", "My new gallery");
 
-    await click(".uk-button");
+    await click("[data-test-create-gallery-button]");
 
-    assert.dom(".uk-card-title").hasText("My new gallery");
+    assert.dom("[data-test-galleries-title='1']").hasText("My new gallery");
   });
 
   test("the user can edit a gallery", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.create("album");
 
     await authenticateSession();
 
     await visit("/gallery/1");
 
-    await click(".edit-gallery");
+    await click("[data-test-edit-gallery]");
 
-    await fillIn(".uk-input", "Edited gallery");
+    await fillIn("[data-test-edit-gallery-title]", "Edited gallery");
 
-    await click(".uk-button");
+    await click("[data-test-edit-gallery-button]");
 
-    assert.dom(".uk-card-title").hasText("Edited gallery");
+    assert.dom("[data-test-galleries-title='1']").hasText("Edited gallery");
   });
 
   test("the user can upload a picture to a gallery", async function(assert) {
     assert.expect(1);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.create("album");
 
     await authenticateSession();
 
     await visit("/gallery/1");
 
-    await click(".uk-margin-small-right");
+    await click("[data-test-upload]");
 
-    await fillIn(".photo-title", "Test photo");
+    await fillIn("[data-test-photo-title]", "Test photo");
 
-    await fillIn(".photo-url", "example.jpg");
+    await fillIn("[data-test-photo-url]", "example.jpg");
+
+    await click("[data-test-upload-photo-button]");
 
     await visit("/gallery/1");
 
-    assert.equal(find("img").length, 1);
+    assert.dom("[data-test-photo='1']").exists();
   });
 
   test("the user can delete a gallery", async function(assert) {
     assert.expect(2);
 
-    defaultScenario(server);
+    server.create("user");
+
+    server.createList("album", 10);
 
     await authenticateSession();
 
     await visit("/gallery/10");
 
-    await click(".uk-button-danger");
+    await click("[data-test-delete-gallery-button]");
 
     assert.dom('[data-test-gallery="10"]').doesNotExist();
+
     assert.equal(currentURL(), "/gallery", "Should navigate to galleries");
   });
 });
